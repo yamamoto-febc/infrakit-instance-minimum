@@ -1,0 +1,2 @@
+# infrakit-instance-minimum
+
