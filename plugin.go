@@ -54,6 +54,12 @@ func (p *plugin) Label(instance instance.ID, labels map[string]string) error {
 }
 
 func (p *plugin) Destroy(instance instance.ID, context instance.Context) error {
+	path := filepath.Join(instanceDir, string(instance))
+	_, err := os.Stat(path)
+	if err == nil {
+		//ファイルが存在する場合は削除
+		return os.Remove(path)
+	}
 	return nil
 }
 
