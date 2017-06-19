@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/docker/infrakit/pkg/spi/instance"
 	"github.com/docker/infrakit/pkg/types"
+	"io/ioutil"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -57,5 +58,21 @@ func (p *plugin) Destroy(instance instance.ID, context instance.Context) error {
 }
 
 func (p *plugin) DescribeInstances(labels map[string]string, properties bool) ([]instance.Description, error) {
-	return nil, nil
+
+	// ディレクトリ(/tmp/infrakit-dummy-instances)配下のファイルを取得
+	entries, err := ioutil.ReadDir(instanceDir)
+	if err != nil {
+		return nil, err
+	}
+
+	result := []instance.Description{}
+	// インスタンス情報の組み立て
+	for _, entry := range entries {
+		result = append(result, instance.Description{
+			ID: instance.ID(entry.Name()),
+		})
+
+	}
+	return result, nil
+
 }
