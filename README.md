@@ -1,6 +1,8 @@
 # infrakit-instance-minimum
 
+[InfraKit](https://github.com/docker/infrakit)のインスタンスプラグインの作り方についてのサンプル実装。  
 
+ブログ記事: [Docker/InfraKitのインスタンスプラグインの作り方](http://febc-yamamoto.hatenablog.jp/entry/create-infrakit-instance-plugin)
 
 ## License
 
